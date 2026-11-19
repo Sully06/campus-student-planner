@@ -1,0 +1,48 @@
+
+/* background and font */
+body {
+    background-color: #f2f2f2;
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* main page content */
+main {
+    flex: 1;
+}
+
+/* website header */
+header h1 {
+    font-size: 28px;
+}
+
+/* boxes for content */
+.card {
+    background-color: white;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+}
+
+/* space between buttons */
+nav a {
+    margin: 3px;
+}
+
+/* completed homework */
+.completed {
+    text-decoration: line-through;
+    opacity: 0.6;
+}
+
+/* class schedule table */
+table td {
+    padding: 15px;
+    min-width: 130px;
+}
+
+/* bottom of the website */
+footer {
+    margin-top: auto;
+}
