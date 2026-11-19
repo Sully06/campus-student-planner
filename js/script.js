@@ -86,3 +86,24 @@ if (currentWeek) {
         showWeek();
     });
 }
+
+
+// get weather for Des Moines
+const weatherInfo = document.getElementById("weather-info");
+
+if (weatherInfo) {
+    fetch("https://api.open-meteo.com/v1/forecast?latitude=41.59&longitude=-93.62&current=temperature_2m&temperature_unit=fahrenheit")
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Weather request failed");
+            }
+            return response.json();
+        })
+        .then(data => {
+            weatherInfo.textContent = "Des Moines: " 
+                + data.current.temperature_2m + "°F";
+        })
+        .catch(error => {
+            weatherInfo.textContent = "Weather unavailable.";
+        });
+}
