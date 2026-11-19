@@ -107,3 +107,32 @@ if (weatherInfo) {
             weatherInfo.textContent = "Weather unavailable.";
         });
 }
+
+
+// get upcoming holidays
+const holidayInfo = document.getElementById("holiday-info");
+const year = new Date().getFullYear();
+
+if (holidayInfo) {
+    fetch("https://nagerholidays.com/api/v4/Holidays/US/" + year)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Request failed");
+            }
+            return response.json();
+        })
+        .then(data => {
+            const upcoming = data.filter(holiday =>
+                new Date(holiday.date + "T23:59:59") >= new Date()
+                && holiday.nationalHoliday
+                && holiday.holidayTypes.includes("Public")
+            );
+
+            holidayInfo.textContent = upcoming.slice(0, 3)
+                .map(holiday => holiday.name + " - " + holiday.date)
+                .join(" | ") || "No more public holidays this year.";
+        })
+        .catch(error => {
+            holidayInfo.textContent = "Holiday information unavailable.";
+        });
+}
